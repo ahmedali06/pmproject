@@ -1,0 +1,35 @@
+
+/*.body-container{*/
+    /*background-color:#c0c0c0;*/
+/*}*/
+.header{
+
+    background-color: #c0c0c0;
+    height:20%;
+}
+.header .title{
+    font-size: 40px;
+    color:dodgerblue;
+    text-align: left;
+
+}
+.signin-button{
+    float: right;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 15px;
+}
+.container{
+    height: 80%;
+}
+.footer{
+  text-align: center;
+}
+.modal_or_separator {
+    color: #9CACBC;
+    overflow: hidden;
+    text-align: center;
+    display: block; }
+/*.form-signin{*/
+    /*background-color:#ffffff;*/
+/*}*/
