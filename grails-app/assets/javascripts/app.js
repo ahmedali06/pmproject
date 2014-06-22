@@ -16,6 +16,7 @@ var pmapp=angular.module('PmApp', [
             when("/project/show/:project_id", {templateUrl: "views/project/show.gsp", controller: "ProjectShowController"}).
             when("/project/delete/:project_id", {templateUrl: "views/project/index.gsp", controller: "ProjectDeleteController"}).
             when("/tasks", {templateUrl: "views/task/index.gsp", controller: "RegisterController"}).
+            when("/task/create", {templateUrl: "views/task/create.gsp"}).
             when("/tasks/search", {templateUrl: "views/task/search.gsp", controller: "RegisterController"})
             .otherwise({redirectTo: '/index'});
     }]);

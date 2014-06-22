@@ -1,6 +1,4 @@
-
-<div class="container">
-    <div class="row clearfix">
+<div class="row clearfix">
         <div class="col-md-12 column">
             <div class="row clearfix">
                 <div class="col-md-6 column">
@@ -9,7 +7,7 @@
                     </h3>
                 </div>
                 <div class="col-md-6 column">
-                    <a href="#/projects/create" class="btn btn-lg" type="button">Create New Task</a>
+                    <a href="/pmproject/#/task/create" class="btn btn-lg" type="button">Create New Task</a>
                 </div>
             </div>
             <table class="table table-bordered table-hover table-condensed">
@@ -73,4 +71,3 @@
             </table>
         </div>
     </div>
-</div>

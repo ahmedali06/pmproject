@@ -1,5 +1,4 @@
-<div class="container">
-    <div class="row clearfix">
+<div class="row clearfix">
         <div class="col-md-3 column">
             <span class="label label-default">Project</span>
             <div class="btn-group">
@@ -47,13 +46,17 @@
         </div>
         <div class="col-md-3 column">
             <span class="label label-default">Text</span><span class="label label-default"></span>
+                <input type="text" class="form-control" id="projectname" ng-model="form.searchText" required/>
         </div>
     </div>
     <div class="row clearfix">
         <div class="col-md-12 column">
-            <table class="table">
+            <table class="table table-bordered table-hover table-condensed">
                 <thead>
                 <tr>
+                    <th>
+                        Task#
+                    </th>
                     <th>
                         Project
                     </th>
@@ -68,6 +71,9 @@
                 <tbody>
                 <tr>
                     <td>
+                        <a href="#"> 1 </a>
+                    </td>
+                    <td>
                         Cobone
                     </td>
                     <td>
@@ -78,6 +84,9 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>
+                        <a href="#"> 2</a>
+                    </td>
                     <td>
                         Triperna
                     </td>
@@ -90,6 +99,9 @@
                 </tr>
                 <tr>
                     <td>
+                        <a href="#"> 3 </a>
+                    </td>
+                    <td>
                         Cobone
                     </td>
                     <td>
@@ -101,6 +113,9 @@
                 </tr>
                 <tr>
                     <td>
+                        <a href="#"> 4</a>
+                    </td>
+                    <td>
                         Triperan
                     </td>
                     <td>
@@ -111,6 +126,9 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>
+                        <a href="#"> 5 </a>
+                    </td>
                     <td>
                         Cobone
                     </td>
@@ -125,4 +143,3 @@
             </table>
         </div>
     </div>
-</div>

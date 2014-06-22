@@ -1,5 +1,4 @@
-<div class="container" ng-controller="ProjectController">
-    <div class="row clearfix">
+<div class="row clearfix" ng-controller="ProjectController">
         <div class="col-md-12 column">
             <div class="page-header">
                 <h1>
@@ -55,4 +54,3 @@
             </p>
         </div>
     </div>
-</div>

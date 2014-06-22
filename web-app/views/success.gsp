@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
             <h2>
@@ -20,4 +19,3 @@
             </p>
         </div>
     </div>
-</div>

@@ -37,8 +37,8 @@
             <ul class="nav navbar-nav side-nav">
                 <li class="active"><a href="/pmproject/#/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
                 <li><a href="/pmproject/#/projects"><i class="fa fa-bar-chart-o"></i> Projects</a></li>
-                <li><a href="/pmproject//#/tasks"><i class="fa fa-table"></i> Tasks</a></li>
-                <li><a href="/pmproject//#/tasks/search"><i class="fa fa-table"></i> Search Tasks</a></li>
+                <li><a href="/pmproject/#/tasks"><i class="fa fa-table"></i> Tasks</a></li>
+                <li><a href="/pmproject/#/tasks/search"><i class="fa fa-table"></i> Search Tasks</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right navbar-user">
