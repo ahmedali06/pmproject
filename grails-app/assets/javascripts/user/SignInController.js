@@ -6,8 +6,9 @@ var signInController=angular.module('PmApp');
         signInController.controller('SignInController', ['$rootScope', '$scope', '$http', 'authService',
             function ($rootScope, $scope, $http, authService) {
                 console.log('SignInController called');
-
+                console.log($scope.form);
                 $scope.signInUser = function () {
+                    event.preventDefault();
                     console.log('SignIn called');
 
                     $http.post('http://localhost:8080/pmproject/auth/api/login', { username: $scope.form.username, password: $scope.form.password }, getAuthenticateHttpConfig).

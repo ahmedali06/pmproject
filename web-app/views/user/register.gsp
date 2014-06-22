@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <h1>Register</h1>
-<form role="form" name="saveUserData" action="#" ng-controller="RegisterController" ng-submit="submitForm()">
+<form role="form" name="saveUserData" action="#" ng-controller="RegisterController" ng-submit="registerUser()">
     <div class="form-group">
         <label for="firstname" class="col-md-2">
             First Name:
@@ -64,7 +64,7 @@
         <div class="col-md-10">
             <input type="password" class="form-control" id="confirm_password" placeholder="Re Enter Password" required>
             <p class="help-block">
-                Min: 6 characters (Alphanumeric only)
+                Min: 5 characters (Alphanumeric only)
             </p>
         </div>
 
@@ -77,11 +77,11 @@
         </label>
         <div class="col-md-10">
             <label class="radio">
-                <input type="radio" ng-model="form.gender" id="gender" value="M" checked>
+                <input type="radio" ng-model="form.gender" value="M" checked>
                 Male
             </label>
             <label class="radio">
-                <input type="radio" ng-model="form.gender" id="gender" value="W">
+                <input type="radio" ng-model="form.gender" value="W">
                 Female
             </label>
         </div>

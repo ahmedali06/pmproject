@@ -94,11 +94,6 @@ environments {
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
-
-// Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'Person'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'PersonRole'
-grails.plugin.springsecurity.authority.className = 'Role'
 // log4j configuration
 log4j.main = {
     // Example of changing the log pattern for the default console appender:
@@ -118,7 +113,18 @@ log4j.main = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+
+//    debug  'com.odobo',
+//            'grails.app.controllers.com.odobo',
+//            'grails.app.services.com.odobo',
+//            'org.pac4j',
+//            'org.springframework.security'
 }
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.pmapp.auth.Person'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.pmapp.auth.PersonRole'
+grails.plugin.springsecurity.authority.className = 'com.pmapp.auth.Role'
 
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['permitAll'],
@@ -141,9 +147,9 @@ grails.plugin.springsecurity.rest.token.storage.gorm.tokenValuePropertyName = 't
 grails.plugin.springsecurity.rest.token.storage.gorm.usernamePropertyName = 'username'
 grails.plugin.springsecurity.rest.token.validation.headerName=	'X-Auth-Token'
 grails.plugin.springsecurity.rest.login.failureStatusCode='401'
-grails.plugin.springsecurity.rest.token.validation.enableAnonymousAccess=false
-grails.plugin.springsecurity.rest.token.generation.useSecureRandom=true
-grails.plugin.springsecurity.rest.token.generation.useUUID=false
+//grails.plugin.springsecurity.rest.token.validation.enableAnonymousAccess=false
+//grails.plugin.springsecurity.rest.token.generation.useSecureRandom=true
+//grails.plugin.springsecurity.rest.token.generation.useUUID=false
 
 grails.plugin.springsecurity.filterChain.chainMap = [
         '/api/**': 'JOINED_FILTERS,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter',  // Stateless chain

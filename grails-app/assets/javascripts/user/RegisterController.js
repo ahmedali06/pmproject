@@ -16,31 +16,24 @@ var registerController=angular.module('PmApp');
         formData = $scope.form;
     };
 
-    $scope.submitForm = function() {
+    $scope.registerUser = function() {
+        event.preventDefault();
         console.log("posting data....");
         formData = $scope.form;
         console.log(formData);
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/pmproject/person/save',
+            url: '/pmproject/person/save',
             data: JSON.stringify(formData),
             headers: {'Content-Type': 'application/json'}
-        }).success(function(data,status,headers){
-                var strJSON=data;
-                if(strJSON.status=="Success")
-                {
-//                    alert("success");
-                    $location.path('/success');
-//                    window.location = "#/success";
-//                    scope.$apply(function() { $location.path("#/home"); });
-                }
-                else
-                {
-                    $scope.user.status=strJSON.userId+" : "+strJSON.status;
-                }
-                /*success callback*/
-                console.log("status:"+status)
+        }).success(function(data,status){
+                console.log(status)
+                $location.path('/success');
+
+            }).error(function(data,status){
+
+                console.log(status)
 
             });
     };

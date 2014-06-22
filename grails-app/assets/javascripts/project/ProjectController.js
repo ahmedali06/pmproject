@@ -18,17 +18,22 @@ projectController.controller('ProjectShowController', ['$scope', '$http','$route
             });
     }]);
 
-
-projectController.controller('ProjectEditController', ['$scope', '$http','$routeParams',
-    function ($scope,$http,$routeParams) {
+projectController.controller('ProjectDeleteController', ['$scope', '$http','$location','$routeParams',
+    function ($scope,$http,$location,$routeParams) {
+        console.log('ProjectDeleteController called')
         $scope.project_id = $routeParams.project_id;
-        $http.get('http://localhost:8080/pmproject/project/show/'+$scope.project_id)
-            .success(function (data, status, headers, config) {
-                console.log("project", data)
-                $scope.projectDetail = data;
-            }).error(function (data, status, headers, config) {
-                console.log("Error while loading project ", status)
+        console.log("id:"+$scope.project_id)
+        $http.delete('http://localhost:8080/pmproject/project/delete/'+$scope.project_id)
+            .success(function(data,status){
+                console.log(status)
+                $location.path('/projects');
+
+            }).error(function(data,status){
+
+                console.log(status)
+
             });
+
     }]);
 
 projectController.controller('ProjectController', ['$scope', '$http',
@@ -53,29 +58,23 @@ projectController.controller('ProjectAddController',function ($scope, $http,$loc
     };
 
     $scope.addProject = function() {
+        event.preventDefault();
         console.log("posting data....");
         formData = $scope.form;
         console.log(formData);
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/pmproject/project/save',
+            url: '/pmproject/project/save',
             data: JSON.stringify(formData),
             headers: {'Content-Type': 'application/json'}
-        }).success(function(data,status,headers){
-                alert("succ1")
-                var strJSON=data;
-                if(strJSON.status=="Success")
-                {
+        }).success(function(data,status){
+                console.log(status)
                     $location.path('/projects');
-//                    window.location = "/projects";
-                }
-                else
-                {
-                    $scope.status=strJSON.status;
-                }
-                /*success callback*/
-                console.log("status:"+$scope.status)
+
+            }).error(function(data,status){
+
+                console.log(status)
 
             });
     };
@@ -83,41 +82,32 @@ projectController.controller('ProjectAddController',function ($scope, $http,$loc
 
 
 projectController.controller('ProjectUpdateController',function ($scope, $http,$location) {
-    var formData = {
-        project_id:$scope.projectDetail.id,
-        name: $scope.projectDetail.name,
-        description: $scope.projectDetail.description
-    };
-
-    $scope.save = function() {
-        formData = $scope.form;
-    };
 
     $scope.updateProject = function() {
-        console.log("posting data....");
-        formData = $scope.form;
-        console.log(formData);
+        event.preventDefault();
+        var paramData=$scope.projectDetail;
+        console.log("posting data...."+$scope.projectDetail.id);
+        console.log("posting data...."+$scope.projectDetail.name);
+        console.log("posting data...."+$scope.projectDetail.description);
 
         $http({
             method: 'PUT',
-            url: 'http://localhost:8080/pmproject/project/update',
-            data: JSON.stringify(formData),
+            url: '/pmproject/project/update',
+            data: paramData,
             headers: {'Content-Type': 'application/json'}
-        }).success(function(data,status,headers){
-                alert("succ1")
-                var strJSON=data;
-                if(strJSON.status=="Success")
-                {
-                    $location.path('/projects');
-//                    window.location = "/projects";
-                }
-                else
-                {
-                    $scope.status=strJSON.status;
-                }
-                /*success callback*/
-                console.log("status:"+$scope.status)
+        }).success(function(data,status){
+                console.log(status)
+                console.log(data.updatedId)
+                $location.path('/project/show/'+data.updatedId);
+                setReadOnly('projectname');
+                setReadOnly('description');
+
+            }).error(function(data,status){
+
+                console.log(status)
 
             });
     };
 });
+
+

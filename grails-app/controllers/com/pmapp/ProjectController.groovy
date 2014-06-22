@@ -6,10 +6,8 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import org.codehaus.groovy.grails.web.json.JSONObject
 
-//@Transactional(readOnly = true)
 class ProjectController implements Serializable{
 
-//    static namespace = 'blogV1'
     static responseFormats = ['json', 'xml']
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE",show:"GET"]
 
@@ -23,7 +21,6 @@ class ProjectController implements Serializable{
         if(params.id){
             respond Project.get(params.id)
         }
-//        respond projectInstance
     }
 
     def create() {
@@ -34,102 +31,53 @@ class ProjectController implements Serializable{
 
         println("called save"+params.toString()+":"+request.JSON)
         def data=new JSONObject(request.JSON)
-        def project=new Project()
+        def projectInstance=new Project()
         println("init Project")
-        project.name=data.name
-        project.description=data.description
+        projectInstance.name=data.name
+        projectInstance.description=data.description
         println("before save")
-        def createdProject=project.save(flush: true,failOnError: true)
+        def createdProject=projectInstance.save(flush: true,failOnError: true)
         println("after save")
 
         render(contentType: 'text/json') {[
-                'results': createdProject,
-                'status': createdProject ? "Success" : "Not Success"
+                'status': createdProject ? "SUCCESS" : "FAIL"
         ]}
     }
-//    @Transactional
-//    def save(Project projectInstance) {
-//        if (projectInstance == null) {
-//            notFound()
-//            return
-//        }
-//
-//        if (projectInstance.hasErrors()) {
-//            respond projectInstance.errors, view:'create'
-//            return
-//        }
-//
-//        projectInstance.save flush:true
-//
-//        request.withFormat {
-//            form multipartForm {
-//                flash.message = message(code: 'default.created.message', args: [message(code: 'project.label', default: 'Project'), projectInstance.id])
-//                redirect projectInstance
-//            }
-//            '*' { respond projectInstance, [status: CREATED] }
-//        }
-//    }
 
     def edit(Project projectInstance) {
         respond projectInstance
     }
 
     def update(){
+
         println("called update"+params.toString()+":"+request.JSON)
         def data=new JSONObject(request.JSON)
-        def project=Project.get(data.project_id)
+        def projectInstance=Project.get(data.id)
         println("init Project")
-        project.name=data.name
-        project.description=data.description
+        projectInstance.name=data.name
+        projectInstance.description=data.description
         println("before save")
-        def createdProject=project.save(flush: true,failOnError: true)
+        def createdProject=projectInstance.save(flush: true,failOnError: true)
         println("after save")
 
         render(contentType: 'text/json') {[
-                'results': createdProject,
-                'status': createdProject ? "Success" : "Not Success"
+                'updatedId':createdProject.id,
+                'status': createdProject ? "SUCCESS" : "FAIL"
         ]}
     }
-//    @Transactional
-//    def update(Project projectInstance) {
-//        if (projectInstance == null) {
-//            notFound()
-//            return
-//        }
-//
-//        if (projectInstance.hasErrors()) {
-//            respond projectInstance.errors, view:'edit'
-//            return
-//        }
-//
-//        projectInstance.save flush:true
-//
-//        request.withFormat {
-//            form multipartForm {
-//                flash.message = message(code: 'default.updated.message', args: [message(code: 'Project.label', default: 'Project'), projectInstance.id])
-//                redirect projectInstance
-//            }
-//            '*'{ respond projectInstance, [status: OK] }
-//        }
-//    }
 
-    @Transactional
-    def delete(Project projectInstance) {
 
-        if (projectInstance == null) {
-            notFound()
-            return
+    def delete() {
+        println("called delete"+params.id)
+        if(params.id){
+        def projectInstance=Project.get(params.id)
+            def isDeleted=projectInstance.delete flush:true
+
+            render(contentType: 'text/json') {[
+                    'status': isDeleted ? "SUCCESS" : "FAIL"
+            ]}
         }
 
-        projectInstance.delete flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Project.label', default: 'Project'), projectInstance.id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
     }
 
     protected void notFound() {

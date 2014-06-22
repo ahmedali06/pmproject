@@ -1,7 +1,4 @@
 
-%{--<head>--}%
-    %{--<meta name="layout" content="main"/>--}%
-%{--</head>--}%
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
@@ -44,7 +41,7 @@
                         {{project.description}}
                     </td>
                     <td>
-                        <a href="#" class="glyphicon glyphicon-edit"></a>
+                        <a href="#/project/delete/{{project.id}}" class="btn btn-warning">Delete</a>
                     </td>
                 </tr>
                 </tbody>

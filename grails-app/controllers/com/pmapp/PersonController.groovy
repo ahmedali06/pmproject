@@ -6,6 +6,7 @@ import grails.plugin.springsecurity.annotation.Secured
 import org.codehaus.groovy.grails.web.json.JSONObject
 
 class PersonController implements Serializable{
+    static responseFormats = ['json', 'xml']
     static allowedMethods = ['save':'POST']
     def index() { }
 
@@ -14,19 +15,20 @@ class PersonController implements Serializable{
         println("called save"+params.toString()+":"+request.JSON)
         def data=new JSONObject(request.JSON)
         def person=new Person()
-        println("init person")
+//        println("init person")
         person.firstName=data.firstname
         person.lastName=data.lastname
         person.password=data.password
         person.email=data.emailaddress
+        person.username=data.emailaddress
         person.gender=GenderEnum.valueOf(data.gender)
-        println("before save")
+        person.enabled=true
+//        println("before save")
         def createdPerson=person.save(flush: true,failOnError: true)
-        println("after save")
-
+//        println("after save")
+        println(createdPerson)
         render(contentType: 'text/json') {[
-                'results': createdPerson,
-                'status': createdPerson ? "Success" : "Not Success"
+                'status': createdPerson ? "SUCCESS" : "FAIL"
         ]}
     }
     @Secured(['ROLE_ADMIN'])

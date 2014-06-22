@@ -1,17 +1,18 @@
 package com.pmapp
-
+ import com.pmapp.task.StatusEnum
+import com.pmapp.task.PriorityEnum
 class Task {
 
     String title
     String description
-    String status
-    String priority
-    String reportedBy
-    String assignTo
+    StatusEnum status
+    PriorityEnum priority
+    int reportedBy
+    int assignTo
     Project project
 
     static belongsTo = [project:Project]
-    static hasMany = [comment:Comment]
+    static hasMany = [comments:Comment]
     static constraints = {
         title blank: false, nullable: false
         description blank: false, nullable: false
